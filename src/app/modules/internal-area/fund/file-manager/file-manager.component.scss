@@ -102,11 +102,13 @@ li ul {
 }
 
 ::ng-deep {
-    .rounded-checkbox {
+    .file-manager-container {
+        .rounded-checkbox {
 
-        & .mat-checkbox-background,
-        .mat-checkbox-frame {
-            border-radius: 70% !important;
+            & .mat-checkbox-background,
+            .mat-checkbox-frame {
+                border-radius: 70% !important;
+            }
         }
     }
 }

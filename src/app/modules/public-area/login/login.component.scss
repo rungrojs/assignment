@@ -1,8 +1,10 @@
 ::ng-deep {
+    .login-container {
 
-    .mat-progress-spinner circle,
-    .mat-spinner circle {
-        stroke: #fefefe !important;
+        .mat-progress-spinner circle,
+        .mat-spinner circle {
+            stroke: #fefefe !important;
+        }
     }
 }
 

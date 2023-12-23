@@ -1,27 +1,29 @@
 ::ng-deep {
-    .mat-button-toggle-label-content {
-        line-height: 24px !important;
-    }
-
-    .mat-button-wrapper {
-        cursor: pointer;
-
-        >* {
-            margin: auto;
+    .performance-container {
+        .mat-button-toggle-label-content {
+            line-height: 24px !important;
         }
-    }
 
-    table {
-        th {
+        .mat-button-wrapper {
+            cursor: pointer;
+
+            >* {
+                margin: auto;
+            }
+        }
+
+        table {
+            th {
+                height: 2.5rem;
+                font-weight: 400;
+            }
+        }
+
+        td {
             height: 2.5rem;
-            font-weight: 400;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            text-align: center;
         }
-    }
-
-    td {
-        height: 2.5rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        text-align: center;
     }
 }
