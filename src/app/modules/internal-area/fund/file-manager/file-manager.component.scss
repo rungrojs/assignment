@@ -1,0 +1,116 @@
+$line-color: #ccc;
+
+mat-tree {
+    background-image: url('/assets/images/bg.png');
+    background-position: top;
+    background-repeat: repeat;
+}
+
+.tree-progress-bar {
+    margin-left: 30px;
+}
+
+.tree-nested-node {
+    padding-left: 30px;
+}
+
+.mat-tree-node {
+    padding: 0;
+    // background-color: white;
+    cursor: pointer;
+
+    >* {
+        top: 0px;
+    }
+}
+
+.mat-nested-tree-node {
+    top: -24px;
+
+    .line-left {
+        border-top: dashed 1px $line-color;
+        top: 48px;
+        left: -40px;
+        width: 40px;
+    }
+}
+
+.tree-nested-node {
+    .line-left-x {
+        border-top: dashed 1px $line-color;
+        top: 0px;
+        left: -60px;
+        width: 60px;
+    }
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li.tree-container {
+    border-bottom: 0;
+}
+
+ul {
+    padding-left: 40px;
+}
+
+li {
+    padding-left: 40px;
+    border: 1px dashed $line-color;
+    border-width: 0 0 0px 1px;
+    position: relative;
+    top: -24px;
+
+    &.root {
+        border: 0px;
+        padding-left: 0px;
+    }
+}
+
+li.mat-tree-node,
+li div {
+    margin: 0;
+    position: relative;
+    top: 24px;
+}
+
+li ul {
+    margin-left: -40px;
+    padding-left: 60px;
+
+    &.root-child {
+        padding-left: 100px;
+    }
+}
+
+.root>ul {
+    border: none;
+}
+
+.mat-nested-tree-node:last-child>li>ul {
+    border-left: 2px solid white;
+    margin-left: -41px;
+}
+
+.mat-icon-button {
+    z-index: 10;
+}
+
+::ng-deep {
+    .rounded-checkbox {
+
+        & .mat-checkbox-background,
+        .mat-checkbox-frame {
+            border-radius: 70% !important;
+        }
+    }
+}
+
+.mat-icon.fa {
+    font-size: 18px;
+}

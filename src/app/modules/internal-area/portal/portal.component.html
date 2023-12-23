@@ -1,0 +1,51 @@
+<div class="flex flex-col w-full">
+  <div class="min-h-16 bg-gray-100 flex items-center justify-end w-full">
+    <div class="mr-10 cursor-pointer" (click)="signOut()">
+      <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+    </div>
+  </div>
+  <div class="w-full pt-4 pb-4 border-t-[1px] border-b-[1px] border-b-gray-300">
+    <div class="ml-2 md:ml-[20vw] text-lg">
+      Welcome to Asia Alternatives to Quantium Investor Portal
+    </div>
+  </div>
+  <div class="flex flex-col justify-center">
+    <div
+      *ngFor="let fund of fundDatas"
+      class="border-[1px] border-gray-300 mt-8 p-3 ml-2 mr-2 w-full md:w-[600px] rounded-md pb-4 pt-4 cursor-pointer fund-item"
+      style="align-self: center"
+      (click)="viewClientSummary(fund.Id)"
+    >
+      <div class="flex flex-row">
+        <div class="min-w-[35%] md:w-[33%] pr-4 flex justify-center">
+          <img alt="fund-logo" [src]="fund.Logo" width="120" />
+        </div>
+        <div class="grow flex flex-col overflow-hidden">
+          <div class="text-lg">{{ fund.Name }}</div>
+          <div class="report-item mt-2 overflow-hidden">
+            <div
+              *ngFor="let aReport of fund.Funds"
+              class="flex flex-row cursor-pointer hover:bg-sky-100 max-w-[100%] rounded-md p-2"
+              (click)="
+                viewFundDetail(fund.Id, aReport.Id); $event.stopPropagation()
+              "
+            >
+              <div class="min-w-[40%] md:min-w-[30%] mr-2">
+                <span
+                  [className]="
+                    'rounded-full p-1 pl-2 pr-2 report_status ' +
+                    aReport.Status.toLowerCase()
+                  "
+                  >{{ aReport.Status }}
+                </span>
+              </div>
+              <div class="truncate overflow-hidden grow">
+                {{ aReport.Name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

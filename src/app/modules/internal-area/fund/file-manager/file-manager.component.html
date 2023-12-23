@@ -1,0 +1,189 @@
+<app-fund-layout>
+  <div class="flex flex-col">
+    <div
+      class="row m-12 mt-4 mb-4 p-4 pl-6 pr-6 pr-10 border-solid border-[1px] border-gray-300 rounded-lg"
+    >
+      <div>
+        <div class="text-lg">File Manager > {{ docTypeName }}</div>
+      </div>
+    </div>
+    <div
+      class="width-full p-12 pt-0 pb-0 flex overflow-hidden flex items-center {{
+        checkAll ? '  ' : ' h-[0px] '
+      }}"
+    >
+      <div
+        class="rounded-full p-1 pl-3 pr-3 bg-gray-200 cursor-pointer h-[26px] text-sm leading-2"
+      >
+        <mat-icon
+          class="fa-solid h-[20px]"
+          fontSet="fa"
+          fontIcon="fa-circle-down"
+        >
+        </mat-icon>
+        <span>Download All</span>
+      </div>
+    </div>
+    <div class="p-12 pt-2 pb-2">
+      <div class="flex flex-col p-2 bg-[white] rounded-lg overflow-hidden">
+        <div class="flex flex-row bg-[#142f50] text-white pb-2 pt-2">
+          <div class="grow pl-[48px]">Name</div>
+          <div class="top-0 pl-3 w-[50px] min-w-[50px]">&nbsp;</div>
+          <div class="top-0 pl-3 w-[100px] min-w-[100px]">Size</div>
+          <div class="top-0 pl-3 w-[130px] min-w-[130px] hidden md:flex">
+            Last modified
+          </div>
+        </div>
+        <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-nested-tree-node *matTreeNodeDef="let node">
+            <li class="relative" style="border-top: 0px">
+              <div class="absolute line-left"></div>
+              <div class="mat-tree-node flex flex-row">
+                <div class="grow top-0 truncate">
+                  <mat-icon
+                    class="fa-regular text-pink-900"
+                    fontSet="fa"
+                    fontIcon="{{
+                      node.type == 'pdf' ? 'fa-file-pdf' : 'fa-image'
+                    }}"
+                  ></mat-icon>
+                  <span class="text-[#0275da] ml-2">{{ node.item }}</span>
+                </div>
+                <div class="top-0 pl-3 w-[50px] min-w-[50px] text-center">
+                  <button mat-icon-button>
+                    <mat-icon
+                      [matMenuTriggerFor]="menuItem"
+                      class="fa-solid"
+                      fontSet="fa"
+                      fontIcon="fa-ellipsis-vertical"
+                    ></mat-icon>
+                  </button>
+                </div>
+                <div class="top-0 pl-3 w-[100px] min-w-[100px]">
+                  {{ node.size | number : "1.2-2" }} KB(s)
+                </div>
+                <div class="top-0 pl-3 w-[130px] min-w-[130px] hidden md:flex">
+                  {{ node.lastModified }}
+                </div>
+              </div>
+            </li>
+          </mat-nested-tree-node>
+          <mat-nested-tree-node *matTreeNodeDef="let node; when: isFolder">
+            <li class="tree-container {{ node.isRoot ? 'root' : '' }}">
+              <div class="mat-tree-node flex flex-row items-center">
+                <div
+                  *ngIf="node.isRoot"
+                  class="w-[40px] min-w-[40px] top-0 flex flex-row justify-center"
+                  style="top: 0px"
+                >
+                  <mat-checkbox
+                    [checked]="checkAll"
+                    (change)="checkAll = !checkAll"
+                    class="bg-white relative z-10 flex rounded-checkbox"
+                  ></mat-checkbox>
+                </div>
+                <div
+                  matTreeNodeToggle
+                  [matTreeNodeToggleRecursive]="checkAll"
+                  class="flex flex-row top-0 items-stech grow truncate"
+                >
+                  <button
+                    mat-icon-button
+                    matTreeNodeToggle
+                    [matTreeNodeToggleRecursive]="checkAll"
+                  >
+                    <mat-icon
+                      *ngIf="node.type == 'folder'"
+                      class="{{
+                        treeControl.isExpanded(node) ? 'fa-regular' : 'fa-solid'
+                      }} text-yellow-400"
+                      fontSet="fa"
+                      fontIcon="{{
+                        treeControl.isExpanded(node)
+                          ? 'fa-folder-open'
+                          : 'fa-folder'
+                      }}"
+                    ></mat-icon>
+                  </button>
+                  <span class="place-self-center">{{ node.item }}</span>
+                  <button
+                    mat-icon-button
+                    [attr.aria-label]="'toggle ' + node.filename"
+                  >
+                    <mat-icon>
+                      {{
+                        treeControl.isExpanded(node)
+                          ? "expand_more"
+                          : "chevron_right"
+                      }}
+                    </mat-icon>
+                  </button>
+                </div>
+                <div
+                  class="top-0 pl-3 w-[50px] min-w-[50px] max-w-[50px] text-center"
+                >
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon
+                      class="fa-solid"
+                      fontSet="fa"
+                      fontIcon="fa-ellipsis-vertical"
+                    ></mat-icon>
+                  </button>
+                </div>
+                <div class="top-0 pl-3 w-[100px] min-w-[100px]">
+                  {{ node.fileNo }} item(s)
+                </div>
+                <div
+                  class="top-0 pl-3 w-[130px] min-w-[130px] max-w-[130px] hidden md:flex"
+                >
+                  {{ node.lastModified }}
+                </div>
+              </div>
+              <ul
+                class="tree-nested-node relative {{
+                  node.isRoot ? 'root-child' : ''
+                }}"
+              >
+                <div
+                  *ngIf="!node.isRoot"
+                  class="absolute top-0 left-0 line-left-x"
+                ></div>
+                <div *ngIf="treeControl.isExpanded(node)">
+                  <ng-container matTreeNodeOutlet></ng-container>
+                </div>
+              </ul>
+            </li>
+          </mat-nested-tree-node>
+        </mat-tree>
+      </div>
+    </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon class="fa-solid" fontSet="fa" fontIcon="fa-circle-down">
+        </mat-icon
+        >Download
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="fa-solid" fontSet="fa" fontIcon="fa-circle-info">
+        </mat-icon>
+        Detail
+      </button>
+    </mat-menu>
+    <mat-menu #menuItem="matMenu">
+      <button mat-menu-item>
+        <mat-icon class="fa-solid" fontSet="fa" fontIcon="fa-circle-down">
+        </mat-icon
+        >Download
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="fa-solid" fontSet="fa" fontIcon="fa-trash"> </mat-icon>
+        Delete
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="fa-solid" fontSet="fa" fontIcon="fa-circle-info">
+        </mat-icon>
+        Detail
+      </button>
+    </mat-menu>
+  </div>
+</app-fund-layout>

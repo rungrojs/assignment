@@ -1,0 +1,146 @@
+{
+    "1": {
+        "Name": "Tax center",
+        "FileNo": 7,
+        "Type": "folder",
+        "LastModified": "2021-01-02 23:33",
+        "Childs": [
+            {
+                "Name": "Legal",
+                "Size": 0,
+                "FileNo": 2,
+                "Type": "folder",
+                "LastModified": "2021-01-02 23:33",
+                "Childs": [
+                    {
+                        "Name": "Article of association.pdf",
+                        "Size": 17.20,
+                        "FileNo": 0,
+                        "Type": "pdf",
+                        "LastModified": "2021-01-02 23:33"
+                    },
+                    {
+                        "Name": "Fund formation.pdf",
+                        "Size": 12.20,
+                        "FileNo": 0,
+                        "Type": "pdf",
+                        "LastModified": "2020-12-02 12:33"
+                    }
+                ]
+            },
+            {
+                "Name": "Transaction Attachments",
+                "Size": 0,
+                "FileNo": 3,
+                "Type": "folder",
+                "LastModified": "2018-01-02 23:33",
+                "Childs": [
+                    {
+                        "Name": "Attachment.pdf",
+                        "Size": 25.20,
+                        "FileNo": 0,
+                        "Type": "pdf",
+                        "LastModified": "2018-01-02 23:33"
+                    },
+                    {
+                        "Name": "Attachment2.pdf",
+                        "Size": 12.20,
+                        "FileNo": 0,
+                        "Type": "pdf",
+                        "LastModified": "2017-12-02 23:33"
+                    },
+                    {
+                        "Name": "Attachment3.png",
+                        "Size": 44.20,
+                        "FileNo": 0,
+                        "Type": "png",
+                        "LastModified": "2017-12-02 23:33"
+                    }
+                ]
+            },
+            {
+                "Name": "Reports",
+                "Size": 0,
+                "FileNo": 2,
+                "Type": "folder",
+                "LastModified": "2018-12-02 23:33",
+                "Childs": [
+                    {
+                        "Name": "Report.pdf",
+                        "Size": 25.20,
+                        "FileNo": 0,
+                        "Type": "pdf",
+                        "LastModified": "2018-12-02 23:33"
+                    },
+                    {
+                        "Name": "Report2.pdf",
+                        "Size": 12.20,
+                        "FileNo": 0,
+                        "Type": "pdf",
+                        "LastModified": "2018-12-01 23:33"
+                    }
+                ]
+            }
+        ]
+    },
+    "2": {
+        "Name": "USD Fund I, L.P.",
+        "FileNo": 5,
+        "Type": "folder",
+        "Childs": [
+            {
+                "Name": "Legal",
+                "Size": 0,
+                "FileNo": 2,
+                "Type": "folder",
+                "Childs": [
+                    {
+                        "Name": "Article of association.pdf",
+                        "Size": 17.20,
+                        "FileNo": 0,
+                        "Type": "pdf"
+                    },
+                    {
+                        "Name": "Fund formation.pdf",
+                        "Size": 12.20,
+                        "FileNo": 0,
+                        "Type": "pdf"
+                    }
+                ]
+            },
+            {
+                "Name": "Transaction Attachments",
+                "Size": 0,
+                "FileNo": 3,
+                "Type": "folder",
+                "Childs": [
+                    {
+                        "Name": "Attachment.pdf",
+                        "Size": 25.20,
+                        "FileNo": 0,
+                        "Type": "pdf"
+                    },
+                    {
+                        "Name": "Attachment2.pdf",
+                        "Size": 12.20,
+                        "FileNo": 0,
+                        "Type": "pdf"
+                    },
+                    {
+                        "Name": "Attachment3.pdf",
+                        "Size": 44.20,
+                        "FileNo": 0,
+                        "Type": "png"
+                    }
+                ]
+            },
+            {
+                "Name": "Reports",
+                "Size": 0,
+                "FileNo": 0,
+                "Type": "folder",
+                "Childs": []
+            }
+        ]
+    }
+}

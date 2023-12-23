@@ -1,0 +1,150 @@
+<app-fund-layout>
+  <div class="flex flex-col">
+    <div
+      class="row m-12 mt-4 mb-4 p-4 pl-6 pr-6 pr-10 border-solid border-[1px] border-gray-300 rounded-lg"
+    >
+      <div>
+        <div class="text-lg">
+          Asia Alternatives Summary
+          <div class="float-right text-sm">
+            <select>
+              <option>USD</option>
+            </select>
+            <select #period class="ml-2" (change)="changePeriod(period.value)">
+              <option value="Q4 2020">Q4 2020</option>
+              <option selected value="Q1 2021">Q1 2021</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row ml-12 mr-12">
+      <div
+        class="w-full md:min-w-[50%] md:w-[50%] overflow-hidden p-6 mt-4 mb-4 border-solid border-[1px] border-gray-300 rounded-lg"
+      >
+        <div>
+          <div class="text-lg">Value Creation {{ currentPeriod }}</div>
+          <google-chart
+            *ngIf="settings.itemNames.length"
+            [dynamicResize]="true"
+            style="width: 100%"
+            class="m-auto mt-2"
+            [data]="datas"
+            [options]="options"
+            [type]="settings.chartType"
+            [title]="settings.title"
+            [columns]="settings.itemNames"
+            [height]="settings.height"
+          >
+          </google-chart>
+        </div>
+      </div>
+      <div class="w-4">&nbsp;</div>
+      <div
+        class="grow overflow-auto md:w-auto p-4 mt-4 mb-4 border-solid border-[1px] border-gray-300 rounded-lg"
+      >
+        <div
+          class="md:ml-2 md:mr-2 md:p-2 md:border-solid md:border-[1px] border-gray-200 rounded-sm h-[100%]"
+        >
+          <div class="text-lg">Aggregated overview</div>
+          <div class="overflow-x-auto w-full">
+            <table
+              *ngIf="fund.CurrentPeriod"
+              class="mt-2 w-full"
+              aria-label="Aggregated overview"
+            >
+              <thead>
+                <th class="w-[120px] p-1 text-white bg-[#17375e]">USD</th>
+                <th class="w-[90px] min-w-[90px] p-1 text-white bg-[#17375e]">
+                  {{ fund.CurrentPeriod.Previous }}
+                </th>
+                <th class="w-[90px] min-w-[90px] p-1 text-white bg-[#17375e]">
+                  {{ fund.CurrentPeriod.Current }}
+                </th>
+                <th class="w-[60px] min-w-[60px] p-1 text-white bg-[#17375e]">
+                  QoQ
+                </th>
+              </thead>
+              <tr *ngFor="let item of fund.AggItems; let i = index">
+                <td class="aleft">{{ item }}</td>
+                <td
+                  class="text-xs"
+                  [style.color]="
+                    i2 == 2
+                      ? aValue == 0
+                        ? ''
+                        : aValue > 0
+                        ? 'green'
+                        : 'red'
+                      : '#333'
+                  "
+                  *ngFor="
+                    let aValue of fund.CurrentPeriod.Datas[i];
+                    let i2 = index
+                  "
+                >
+                  {{ aValue == 0 ? "-" : "$" }}
+                  {{
+                    (aValue == 0 ? "" : transformValue(aValue))
+                      | number : "1.2"
+                  }}{{ aValue == 0 ? "" : "M" }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row ml-12 mr-12">
+      <div
+        class="w-full overflow-hidden p-6 mt-4 mb-4 border-solid border-[1px] border-gray-300 rounded-lg"
+      >
+        <div>
+          <h3>Asia Alternatives Performance by fund</h3>
+          <div class="overflow-x-auto w-full">
+            <table class="w-full" aria-label="Performance by fund">
+              <thead class="bg-[#002060]">
+                <th
+                  class="p-1 text-white min-w-[150px] sticky left-0 bg-[#002060]"
+                >
+                  Fund
+                </th>
+                <th class="p-1 text-white min-w-[150px]">Invester Entity</th>
+                <th class="p-1 text-white min-w-[80px]">Commitment</th>
+                <th class="p-1 text-white min-w-[80px]">Invested</th>
+                <th class="p-1 text-white min-w-[80px]">Realized</th>
+                <th class="p-1 text-white min-w-[80px]">
+                  Remaining fair value
+                </th>
+                <th class="p-1 text-white min-w-[80px]">Gross MoC</th>
+                <th class="p-1 text-white min-w-[80px]">Net IRR</th>
+              </thead>
+              <ng-container *ngIf="fund.CurrentPeriod">
+                <tr *ngFor="let data of fund.CurrentPeriod.FundDetails">
+                  <td
+                    *ngFor="let field of data; let i = index"
+                    class="{{ i >= 2 ? 'text-center' : '' }}
+                    {{ i == 0 ? 'sticky left-0 bg-white' : '' }}"
+                  >
+                    {{ field }}
+                  </td>
+                </tr>
+              </ng-container>
+
+              <tr class="bg-gray-200" *ngIf="fund.CurrentPeriod">
+                <td class="pl-4 sticky left-0 bg-gray-200">Total</td>
+                <td
+                  *ngFor="let index of [1, 2, 3, 4, 5, 6, 7]"
+                  class="border-solid border-[1px] border-b-black text-center"
+                >
+                  {{ fund.CurrentPeriod.FundSummary[index - 1] ?? "-" }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+  </div>
+</app-fund-layout>

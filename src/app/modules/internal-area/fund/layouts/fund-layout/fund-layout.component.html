@@ -1,0 +1,118 @@
+<div class="min-h-[100vh] flex flex-row w-full bg-[#f7f7f7]">
+  <div
+    class="h-[100vh] md:relative absolute bg-white z-20 {{
+      isShowSideBar ? 'w-[220px] min-w-[220px]' : 'w-0'
+    }} border-r-[1px] border-r-gray-300 border-r-solid overflow-hidden transition-all flex flex-col"
+  >
+    <div class="min-h-[128px] flex flex-row">
+      <div class="grow">
+        <img
+          *ngIf="logoUrl"
+          style="margin-left: 16px"
+          alt="fund logo"
+          class="mt-2 h-[80px]"
+          [src]="logoUrl"
+        />
+      </div>
+      <div class="md:hidden">
+        <mat-icon
+          class="m-3 cursor-pointer"
+          (click)="toggleMenu()"
+          aria-hidden="false"
+          aria-label="toggle menu"
+          fontIcon="home"
+        >
+          menu
+        </mat-icon>
+      </div>
+    </div>
+    <div class="flex flex-col grow overflow-auto">
+      <ng-container *ngFor="let menu of menus; let index = index">
+        <div class="flex-col mb-2" *ngIf="menu.IsShowInNavigation">
+          <div
+            class="flex flex-row items-center cursor-pointer hover:bg-sky-100 min-h-[36px]"
+            (click)="
+              menu.Childs.length ? toggleSubMenu(index) : selectMenu(menu)
+            "
+          >
+            <div class="grow">
+              <span
+                class="ml-4 mr-4 mt-4 {{
+                  currentPath == menu.Path ? 'font-medium' : ''
+                }}"
+              >
+                {{ menu.Name }}
+              </span>
+            </div>
+            <div class="w-8">
+              <mat-icon *ngIf="menu.Childs.length > 0">{{
+                collapseState.get(index)
+                  ? "keyboard_arrow_down"
+                  : "keyboard_arrow_up"
+              }}</mat-icon>
+            </div>
+          </div>
+          <div
+            class="overflow-hidden {{
+              collapseState.get(index) ? 'h-0' : 'h-auto'
+            }}"
+            *ngIf="menu.Childs.length > 0"
+          >
+            <div
+              class="pl-6 mt-2 p-2 hover:bg-sky-100 {{
+                subMenu.Path ? 'cursor-pointer' : ''
+              }}"
+              (click)="selectMenu(subMenu)"
+              *ngFor="let subMenu of menu.Childs"
+            >
+              <span
+                class=" 
+                {{ currentPath == subMenu.Path ? 'font-medium' : '' }}"
+                >{{ subMenu.Name }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div
+      class="flex flex-row h-12 items-center cursor-pointer"
+      (click)="goToPortal()"
+    >
+      <mat-icon class="ml-3" aria-hidden="false" aria-label="toggle menu">
+        keyboard_backspace
+      </mat-icon>
+      <span class="ml-1"> Back </span>
+    </div>
+    <div class="flex flex-row items-center justify-center text-slate-400">
+      <span>Powered By</span>
+      <img
+        class="h-[2rem] ml-2 ml-4"
+        alt="quantium-logo"
+        src="../assets/logos/quantium.png"
+      />
+    </div>
+  </div>
+  <div class="grow max-h-[100vh] overflow-hidden flex flex-col">
+    <div
+      class="bg-white border-b-[1px] border-b-gray-300 border-b-solid pb-3 pt-3 flex items-center w-full"
+    >
+      <mat-icon
+        class="ml-3 cursor-pointer"
+        (click)="toggleMenu()"
+        aria-hidden="false"
+        aria-label="toggle menu"
+        fontIcon="home"
+      >
+        menu
+      </mat-icon>
+      <div class="grow"></div>
+      <div class="mr-10 cursor-pointer" (click)="signOut()">
+        <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+      </div>
+    </div>
+    <div class="grow overflow-auto">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

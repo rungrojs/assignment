@@ -1,0 +1,101 @@
+<div
+  [style.top]="isSignOutHide ? '-60px' : ''"
+  class="popup absolute flex bg-sky-100 w-full flex-row items-center justify-center p-2 
+  {{ isSignOut ? '' : ' hidden ' }}
+  "
+>
+  <span>You have successfully logged out.</span>
+</div>
+<div class="flex flex-col w-full min-h-[100vh] align-item-center">
+  <div class="grow flex flex-row justify-center">
+    <div class="w-full ml-8 mr-8 md:w-[30vw] min-w-[30vw]">
+      <div class="w-full flex justify-center mt-[15vh] md:mt-[10vh]">
+        <img
+          class="margin-auto"
+          alt="client-logo"
+          src="../assets/logos/ggv.png"
+          width="120"
+        />
+      </div>
+      <div class="mt-12 focus:outline-none">
+        <div class="d-flex flex-column">
+          <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              class="border-b-[1px] border-b-gray-300"
+              #userBox
+              type="text"
+              (keydown.enter)="login(userBox.value, passBox.value)"
+            />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column">
+          <mat-form-field class="w-full">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              class="border-b-[1px] border-b-gray-300"
+              #passBox
+              type="password"
+              (keydown.enter)="login(userBox.value, passBox.value)"
+            />
+          </mat-form-field>
+        </div>
+        <div class="min-h-[2rem]">
+          <mat-error class="text-sm" *ngIf="lastError">
+            {{ lastError }}
+          </mat-error>
+        </div>
+        <div class="row mt-2 flex flex-row items-center">
+          <div class="flex">
+            <a class="text-blue-800 text-sm" href="#">FORGOT PASSWORD?</a>
+          </div>
+          <div class="grow"></div>
+          <div>
+            <button
+              aria-label="Login"
+              class="bg-sky-800 text-white p-2 text-sm rounded-sm pl-3 pr-3"
+              [class.opacity-50]="loading"
+              (click)="login(userBox.value, passBox.value)"
+            >
+              <div class="flex flex-row items-center">
+                LOGIN
+                <span
+                  *ngIf="loading"
+                  class="w-[20px] h-[20px] inline-block ml-2"
+                >
+                  <mat-spinner
+                    [diameter]="20"
+                    [color]="'#fefefe'"
+                  ></mat-spinner>
+                </span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col md:flex-row mt-12">
+    <div
+      class="flex w-full md:w-auto justify-center items-center text-slate-400 md:ml-4 md:mb-4 md:mr-4 md:order-1 order-3"
+    >
+      <span>Powered By</span>
+      <img
+        class="h-[3rem] ml-2 ml-4"
+        alt="quantium-logo"
+        src="../assets/logos/quantium.png"
+      />
+    </div>
+    <div class="grow order-2"></div>
+    <div
+      class="flex w-full md:w-auto justify-center items-center md:ml-4 md:mb-4 md:mr-4 md:order-3 order-1"
+    >
+      <span class="text-sm">
+        <a href="#">Contact Us</a> | <a href="#">Terms of Use</a> |
+        <a href="#">Privacy Policy</a>
+      </span>
+    </div>
+  </div>
+</div>

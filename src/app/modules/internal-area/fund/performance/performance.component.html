@@ -1,0 +1,219 @@
+<app-fund-layout>
+  <div class="flex flex-col">
+    <div class="w-full">
+      <div
+        class="flex flex-row m-12 mt-4 mb-4 p-4 pl-6 pr-6 pr-10 h-[64px] border-solid border-[1px] border-gray-300 rounded-lg"
+      >
+        <div class="text-lg grow truncate mr-2" title="{{ currentData?.Name }}">
+          <span class="hidden md:inline">Fund performance : </span
+          >{{ currentData?.Name }}
+        </div>
+        <div
+          class="flex flex-row border-b-gray-500 border-b-solid border-b-[1px] items-center"
+        >
+          <input
+            #dateInput
+            readonly="readonly"
+            class="w-[80px]"
+            (dateChange)="changeDate(dateInput.value)"
+            matInput
+            [matDatepicker]="datepicker"
+            [value]="selectedDate"
+          />
+          <mat-datepicker-toggle [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker> </mat-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row ml-12 mr-12">
+      <div
+        class="w-full md:w-[45%] md:min-w-[45%] overflow-hidden p-6 pb-0 mt-4 mb-4 border-solid border-[1px] border-gray-300 rounded-lg"
+      >
+        <div class="min-h-[460px] flex flex-col">
+          <div class="flex flex-row mb-1">
+            <div
+              class="text-lg grow mr-2 overflow-hidden truncate"
+              title="Deal allocation [number of assets]"
+            >
+              Deal allocation [number of assets]
+            </div>
+            <div>
+              <mat-button-toggle-group
+                [value]="optionAllocate.mode"
+                name="groupBy"
+                aria-label="Group By"
+                (change)="changeGroupBy($event.value)"
+              >
+                <mat-button-toggle class="min-w-[70px]" value="Sector"
+                  >Sector</mat-button-toggle
+                >
+                <mat-button-toggle class="min-w-[70px]" value="Industry"
+                  >Industry</mat-button-toggle
+                >
+              </mat-button-toggle-group>
+            </div>
+          </div>
+          <div
+            #allocate
+            class="grow"
+            matRipple
+            [matRippleCentered]="true"
+            [matRippleDisabled]="true"
+            [matRippleColor]="'#44447711'"
+          >
+            <google-chart
+              *ngIf="optionAllocate.itemNames.length && dataAllocate.length"
+              #pieChart
+              [dynamicResize]="true"
+              style="width: 100%"
+              [title]="optionAllocate.title"
+              [type]="optionAllocate.chartType"
+              [options]="optionAllocate.options"
+              [height]="optionAllocate.height"
+              [data]="dataAllocate"
+            >
+            </google-chart>
+          </div>
+        </div>
+      </div>
+      <div
+        class="overflow-hidden grow md:ml-4 p-6 mt-4 mb-4 border-solid border-[1px] border-gray-300 rounded-lg"
+      >
+        <div class="flex flex-row mb-1">
+          <div class="glow text-lg">Investments by quarter</div>
+        </div>
+        <div
+          #investment
+          matRipple
+          [matRippleCentered]="true"
+          [matRippleDisabled]="true"
+          [matRippleColor]="'#44447711'"
+          class="grow h-full"
+        >
+          <google-chart
+            *ngIf="optionInvest.itemNames.length && dataInvest.length"
+            [dynamicResize]="true"
+            style="width: 100%"
+            [title]="optionInvest.title"
+            [type]="optionInvest.chartType"
+            [data]="dataInvest"
+            [columns]="optionInvest.itemNames"
+            [options]="optionInvest.options"
+            [height]="optionInvest.height"
+          >
+          </google-chart>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col m-12 mt-4 mb-4 p-4 pl-6 pr-6 pr-10 border-solid border-[1px] border-gray-300 rounded-lg"
+    >
+      <div class="flex flex-row w-full items-center">
+        <div class="text-lg grow">Portfolio summary</div>
+        <div>View By :</div>
+        <div class="ml-2">
+          <mat-button-toggle-group
+            [value]="'Deal'"
+            name="groupBy"
+            aria-label="Group By"
+            (change)="changePortGroupBy($event.value)"
+          >
+            <mat-button-toggle class="min-w-[70px]" value="Deal"
+              >Deal</mat-button-toggle
+            >
+            <mat-button-toggle class="min-w-[70px]" value="Asset"
+              >Asset</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </div>
+      </div>
+      <div
+        class="flex flex-row w-full items-center text-sm text-zinc-400 mt-2 md:mt-0"
+      >
+        Realization and Portfolio Summary in USD Million unless otherwise
+        stated.
+      </div>
+      <div class="grow mt-2">
+        <div class="overflow-x-auto w-full">
+          <table class="w-full relative" aria-label="Performance by fund">
+            <thead class="bg-[#234166]">
+              <th
+                class="p-1 text-white min-w-[180px] sticky left-0 bg-[#234166]"
+              >
+                Name
+              </th>
+              <th class="p-1 text-white min-w-[150px]">Inital investments</th>
+              <th class="p-1 text-white min-w-[150px]">Main industry</th>
+              <th class="p-1 text-white min-w-[150px]">Commit/Reserves</th>
+              <th
+                class="p-1 text-white min-w-[150px] border-r-solid border-r-[1px] border-r-gray-400"
+              >
+                Current ownership
+              </th>
+              <th class="p-1 text-white min-w-[150px]">
+                Total investment cost
+              </th>
+              <th class="p-1 text-white min-w-[180px]">
+                Current investment cost
+              </th>
+              <th class="p-1 text-white min-w-[80px]">Realized</th>
+              <th class="p-1 text-white min-w-[150px]">Fair market value</th>
+              <th
+                class="p-1 text-white min-w-[150px] border-r-solid border-r-[1px] border-r-gray-400"
+              >
+                Total value
+              </th>
+              <th class="p-1 text-white min-w-[150px]">Multiples of cost</th>
+              <th class="p-1 text-white min-w-[80px]">Gross IRR</th>
+            </thead>
+            <tr *ngFor="let data of currentData?.PortDatas; let index = index">
+              <td
+                class="text-left sticky left-0 bg-white overview-visible nowrap"
+              >
+                Name {{ index + 1 }}
+              </td>
+              <td
+                *ngFor="let field of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                class="{{ field == 1 ? 'text-left' : '' }} 
+                {{
+                  field == 3 || field == 8
+                    ? 'border-r-solid border-r-[1px] border-r-gray-200'
+                    : ''
+                }}"
+              >
+                -
+              </td>
+            </tr>
+
+            <tr class="bg-[#3a5576] text-white">
+              <td
+                class="text-left sticky left-0 overflow-visible max-w-[180px] flex items-stech"
+              >
+                <div
+                  class="whitespace-nowrap bg-[#3a5576] flex flex-col h-full justify-center"
+                >
+                  <span class="bg-[#3a5576] pr-2 h-100 block"
+                    >Total (excluding management fees and general
+                    expenses)</span
+                  >
+                </div>
+              </td>
+              <td
+                *ngFor="let field of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                class="{{ field == 1 ? 'text-left' : '' }}
+                {{
+                  field == 3 || field == 8
+                    ? 'border-r-solid border-r-[1px] border-r-gray-200'
+                    : ''
+                }}"
+              >
+                -
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-fund-layout>

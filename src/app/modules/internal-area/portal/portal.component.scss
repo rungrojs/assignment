@@ -1,0 +1,15 @@
+.report_status {
+    &.fundraising {
+        color: rgb(28, 100, 76);
+        background-color: rgb(104, 218, 180, 0.3)
+    }
+
+    &.reporting {
+        color: rgb(89, 150, 240);
+        background-color: rgb(178, 204, 243, 0.3);
+    }
+}
+
+.fund-item:hover:not(:has(.report-item *:hover)) {
+    background-color: var(--hover-color)
+}

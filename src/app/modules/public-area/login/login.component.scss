@@ -1,0 +1,12 @@
+::ng-deep {
+
+    .mat-progress-spinner circle,
+    .mat-spinner circle {
+        stroke: #fefefe !important;
+    }
+}
+
+.popup {
+    top: 0;
+    transition: top 1s ease 0s;
+}

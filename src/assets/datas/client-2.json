@@ -1,0 +1,164 @@
+{
+    "Id": "2",
+    "AggItems": [
+        "Contribution",
+        "Distribution",
+        "NAV",
+        "Total Value"
+    ],
+    "AggKeys": [
+        "G_Con",
+        "G_Dis",
+        "G_NAV",
+        "G_TOT"
+    ],
+    "Periods": {
+        "Q1 2021": {
+            "Previous": "2020-12-31",
+            "Current": "2021-03-31",
+            "Datas": [
+                [
+                    4591,
+                    4590.25,
+                    -0.75
+                ],
+                [
+                    2643.66,
+                    2643.16,
+                    -0.52
+                ],
+                [
+                    115,
+                    115,
+                    0
+                ],
+                [
+                    1392.44,
+                    1397.40,
+                    4.96
+                ]
+            ],
+            "FundDatas": [
+                {
+                    "Id": "R2001",
+                    "Name": "USD Fund VI (First closing)",
+                    "GeneralName": "USD Fund VI",
+                    "Status": "Fund raising",
+                    "G_Con": 20,
+                    "G_Dis": 10,
+                    "G_NAV_M": 10,
+                    "G_NAV": 50,
+                    "G_TOT": 60
+                }
+            ],
+            "FundDetails": [
+                [
+                    "USD Fund V",
+                    "Asia Alternative I",
+                    "1.0",
+                    "1.0",
+                    "1.0",
+                    "1.0",
+                    "2.0X",
+                    "20%"
+                ],
+                [
+                    "USD Fund V",
+                    "Asia Alternative I",
+                    "1.0",
+                    "1.0",
+                    "1.0",
+                    "1.0",
+                    "2.0X",
+                    "20%"
+                ]
+            ],
+            "FundSummary": [
+                "",
+                "2.0",
+                "2.0",
+                "2.0",
+                "2.0",
+                "2.0X",
+                "20%"
+            ]
+        },
+        "Q4 2020": {
+            "Previous": "2020-09-30",
+            "Current": "2020-12-31",
+            "Datas": [
+                [
+                    8590,
+                    8591,
+                    1
+                ],
+                [
+                    1643.66,
+                    1643.16,
+                    -0.52
+                ],
+                [
+                    115,
+                    115,
+                    0
+                ],
+                [
+                    1992.44,
+                    1997.40,
+                    4.96
+                ]
+            ],
+            "FundDatas": [
+                {
+                    "Id": "R2001",
+                    "Name": "USD Fund VI (First closing)",
+                    "GeneralName": "USD Fund VI",
+                    "Status": "Fund raising",
+                    "G_Con": 20,
+                    "G_Dis": 10,
+                    "G_NAV_M": 10,
+                    "G_NAV": 50,
+                    "G_TOT": 60
+                }
+            ],
+            "FundDetails": [
+                [
+                    "USD Fund VI",
+                    "Asia Alternative I",
+                    "1.0",
+                    "1.0",
+                    "1.0",
+                    "1.0",
+                    "1.0X",
+                    "10%"
+                ]
+            ],
+            "FundSummary": [
+                "",
+                "1.0",
+                "1.0",
+                "1.0",
+                "1.0",
+                "1.0X",
+                "10%"
+            ]
+        }
+    },
+    "Margin": {
+        "G_Con": 0,
+        "G_Dis": 0,
+        "G_NAV": 10,
+        "G_TOT": 0
+    },
+    "Highlights": [
+        {
+            "Name": "Alibaba"
+        },
+        {
+            "Name": "Taikang Insurance"
+        },
+        {
+            "Name": "GME Assets"
+        }
+    ]
+}
