@@ -33,6 +33,9 @@
           <div class="top-0 pl-3 w-[130px] min-w-[130px] hidden md:flex">
             Last modified
           </div>
+          <div class="top-0 pl-3 w-[130px] min-w-[130px] hidden md:flex">
+            Modified by
+          </div>
         </div>
         <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
           <mat-nested-tree-node *matTreeNodeDef="let node">
@@ -64,6 +67,8 @@
                 </div>
                 <div class="top-0 pl-3 w-[130px] min-w-[130px] hidden md:flex">
                   {{ node.lastModified }}
+                </div>
+                <div class="top-0 pl-3 w-[130px] min-w-[130px] hidden md:flex">
                 </div>
               </div>
             </li>
@@ -138,6 +143,9 @@
                 >
                   {{ node.lastModified }}
                 </div>
+                <div
+                  class="top-0 pl-3 w-[130px] min-w-[130px] hidden md:flex"
+                ></div>
               </div>
               <ul
                 class="tree-nested-node relative {{
