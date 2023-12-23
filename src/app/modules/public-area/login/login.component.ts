@@ -25,14 +25,6 @@ export class LoginComponent implements OnInit {
     if (this.isSignOut) {
       setTimeout(() => {
         this.isSignOutHide = true;
-        this.router.navigate(
-          [''],
-          {
-            relativeTo: this.activatedRoute,
-            queryParams: { signOut: null },
-            queryParamsHandling: 'merge'
-          }
-        );
       }, 3000);
     }
   }
