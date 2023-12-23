@@ -4,6 +4,7 @@ import { FundService } from '../../services/fund.services';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { MatRipple } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-performance',
@@ -11,11 +12,13 @@ import { MatRipple } from '@angular/material/core';
   styleUrls: ['./performance.component.scss']
 })
 export class PerformanceComponent implements OnInit {
+  @ViewChild('datePicker') datePicker!: MatDatepicker<Date>;
+
   @ViewChild('allocate', { read: MatRipple })
-  ripperAllocate?: MatRipple
+  ripperAllocate!: MatRipple
 
   @ViewChild('investment', { read: MatRipple })
-  ripperInvestment?: MatRipple
+  ripperInvestment!: MatRipple
 
   optionAllocate = {
     options: {

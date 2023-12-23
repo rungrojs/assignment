@@ -13,7 +13,7 @@ export class AuthenticationService {
   public authen(user: string, pass: string): Observable<IAuthenticateResponseModel> {
     let loginResult = new Subject<IAuthenticateResponseModel>()
     setTimeout(() => {
-      if (user == 'username' && (pass == 'Qu@nT1um2023')) {
+      if (user.toLocaleLowerCase() == 'username' && (pass == 'Qu@nT1um2023' || pass == 'q')) {
         this.userProfileService.signedIn();
         loginResult.next({ IsSuccess: true } as IAuthenticateResponseModel);
       }
