@@ -8,7 +8,7 @@ body,
 app-root {
     min-height: 100vh;
     padding: 0px;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 html,
@@ -19,4 +19,8 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
